@@ -1,0 +1,10 @@
+﻿  GameManager.cpp
+  Scene1.cpp
+  This is wrong: Vec4 cross(const Vec4& a, const Vec4& b)
+  This questionable: Vec4 inverse(const Vec4& v)
+C:\Users\boomy\Desktop\humber\game-105\assignment2\SDL_Project\Scene1.cpp(98,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\assignment2\SDL_Project\Scene1.cpp(99,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\assignment2\SDL_Project\Scene1.cpp(106,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\assignment2\SDL_Project\Scene1.cpp(107,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  SDL_Project.vcxproj -> C:\Users\boomy\Desktop\humber\game-105\assignment2\Debug\SDL_Project.exe
