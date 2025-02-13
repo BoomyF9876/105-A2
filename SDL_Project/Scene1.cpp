@@ -46,6 +46,9 @@ bool Scene1::OnCreate() {
 	flappyBird->pos = Vec3(0.0f, 4.2f, 0.0f);
 	flappyBird->SetImage("textures/flappyBird.png", renderer);
 
+	// Apply gravity on bird
+	flappyBird->ApplyForce(Vec3(0,flappyBird->gravity,0));
+
 	return true;
 }
 
@@ -64,27 +67,26 @@ void Scene1::OnDestroy() {
 
 void Scene1::HandleEvents(const SDL_Event& event)
 {
-	// switch (event.type) {
-	// case SDL_KEYDOWN:
-	// 	// Change angle of the ball
-	// 	if (event.key.keysym.scancode == SDL_SCANCODE_O) {
-	// 		ball->angleDeg -= 10.0f;
-	// 	}
-	// 	if (event.key.keysym.scancode == SDL_SCANCODE_P) {
-	// 		ball->angleDeg += 10.0f;
-	// 	}
-	// 	break;
+	switch (event.type) {
+	case SDL_KEYDOWN:
+		// Change angle of the ball
+		if (event.key.keysym.scancode == SDL_SCANCODE_O) {
+			// flappyBird->Update(0.01f);
+		}
+		if (event.key.keysym.scancode == SDL_SCANCODE_P) {
+			
+		}
+		break;
 
-	// default:
-	// 	break;
-	// }
+	default:
+		break;
+	}
 }
 
 
 void Scene1::Update(const float deltaTime) {
 	/// Physics goes here
-	
-
+	flappyBird->Update(deltaTime);
 }
 
 void Scene1::Render() const {

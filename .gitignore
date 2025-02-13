@@ -2,3 +2,4 @@
 .vscode/*
 Debug/*
 x64/*
+SDL_Project/Debug/*

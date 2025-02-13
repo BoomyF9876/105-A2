@@ -19,6 +19,7 @@ public:
 	float mass;
 	// Let's pretend all entitys are circles
 	float r;
+	const float gravity = -9.8f;
 	
 
 	Entity();
