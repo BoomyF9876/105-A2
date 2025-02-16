@@ -31,7 +31,8 @@ void Scene1::flappyInit(const float constant = DEFAULT_DRAG_FORCE_CONSTANT) {
 	flappyBird->constant = constant;
 	flappyBird->angleDeg = M_PI / 180 * 27;
 	flappyBird->vel = Vec3(30.0f * cos(flappyBird->angleDeg), 30.0f * sin(flappyBird->angleDeg), 0.0f);
-	flappyBird->ApplyForce(Vec3(-30.0f, flappyBird->gravity * flappyBird->mass, 0.0f));
+	flappyBird->initialForce = Vec3(-30.0f, flappyBird->gravity * flappyBird->mass, 0.0f);
+	flappyBird->ApplyForce(flappyBird->initialForce);
 }
 
 bool Scene1::OnCreate() {
@@ -81,10 +82,19 @@ void Scene1::HandleEvents(const SDL_Event& event)
 	case SDL_KEYDOWN:
 		// Change angle of the ball
 		if (event.key.keysym.scancode == SDL_SCANCODE_A) {
-			constantScale *= 0.5f;
+			constantScale -= 0.05f;
 		}
 		if (event.key.keysym.scancode == SDL_SCANCODE_D) {
-			constantScale *= 2.0f;
+			constantScale += 0.05f;
+		}
+		if (event.key.keysym.scancode == SDL_SCANCODE_Q) {
+			constantScale *= 0.5f;
+		}
+		if (event.key.keysym.scancode == SDL_SCANCODE_E) {
+			constantScale += 2.0f;
+		}
+		if (event.key.keysym.scancode == SDL_SCANCODE_R) {
+			constantScale *= -1.0f;
 		}
 
 		cout << "Drag force constant: " << constantScale * DEFAULT_DRAG_FORCE_CONSTANT << endl;

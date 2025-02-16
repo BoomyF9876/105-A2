@@ -2,8 +2,8 @@
   This is wrong: Vec4 cross(const Vec4& a, const Vec4& b)
   This questionable: Vec4 inverse(const Vec4& v)
 C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(32,36): warning C4305: '=': truncation from 'double' to 'float'
-C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(113,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(114,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(121,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(122,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(123,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(124,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(131,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(132,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
   SDL_Project.vcxproj -> C:\Users\boomy\Desktop\humber\game-105\SDL\Debug\SDL_Project.exe

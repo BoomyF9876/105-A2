@@ -18,6 +18,7 @@ public:
 	Vec3 pos;
 	Vec3 vel;
 	Vec3 acc;
+	Vec3 initialForce;
 	float mass;
 	// Let's pretend all entitys are circles
 	float r;

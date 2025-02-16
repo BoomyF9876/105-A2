@@ -33,6 +33,8 @@ void Entity::ApplyForce(Vec3 force)
 {
 	// Apply drag force
 	acc = vel * -constant / mass;
+
+	// Apply other forces
     acc += Vec3(force.x / mass, force.y / mass, force.z / mass);
 }
 
@@ -44,4 +46,6 @@ void Entity::Update(float deltaTime)
 		0
 	);
     vel += acc * deltaTime;
+
+	ApplyForce(initialForce);
 }
