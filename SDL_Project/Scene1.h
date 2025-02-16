@@ -19,10 +19,12 @@ private:
 
 	float cliffScale = 0.6f; // a scale to make the texture smaller or larger
 	float flappyBirdScale = 1.0f; // a scale to make the texture smaller or larger
-	
+	float constantScale = 1.0f;
+
 public:
 	Scene1(SDL_Window* sdlWindow);
 	~Scene1();
+	void flappyInit(const float constant);
 	bool OnCreate() override;
 	void OnDestroy() override;
 	void HandleEvents(const SDL_Event& event) override;

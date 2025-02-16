@@ -8,6 +8,7 @@ Entity::Entity(): // this is an initializer list
 	mass(1.0f),
 	vel(Vec3(0.0f,0.0f,0.0f)),
 	acc(Vec3(0.0f,0.0f,0.0f)),
+	constant(DEFAULT_DRAG_FORCE_CONSTANT),
 	r(1.0f)
 {
 }
@@ -30,7 +31,9 @@ void Entity::SetImage(const char* filename, SDL_Renderer* renderer) {
 
 void Entity::ApplyForce(Vec3 force)
 {
-    acc = Vec3(force.x / mass, force.y / mass + gravity, 0);
+	// Apply drag force
+	acc = vel * -constant / mass;
+    acc += Vec3(force.x / mass, force.y / mass, force.z / mass);
 }
 
 void Entity::Update(float deltaTime)
@@ -41,12 +44,4 @@ void Entity::Update(float deltaTime)
 		0
 	);
     vel += acc * deltaTime;
-
-	// deltaTime = 0.016s
-	cout<<"Acc: ";
-	acc.print();
-	cout<<"Vel: ";
-	vel.print();
-	cout<<"Pos: ";
-	pos.print();
 }

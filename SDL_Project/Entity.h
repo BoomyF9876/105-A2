@@ -5,6 +5,8 @@
 #include <SDL.h>
 using namespace MATH;
 
+const float DEFAULT_DRAG_FORCE_CONSTANT = 0.2f;
+
 class Entity {
 private:
 	// Keep these private as we should only build them in the setImage method
@@ -19,6 +21,7 @@ public:
 	float mass;
 	// Let's pretend all entitys are circles
 	float r;
+	float constant;
 	const float gravity = -9.8f;
 	
 

@@ -2,8 +2,10 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <MMath.h>
+#include <cmath>
 #include <iostream>
 #include "Entity.h"
+using namespace std;
 
 Scene1::Scene1(SDL_Window* sdlWindow_){
 	window = sdlWindow_;
@@ -17,6 +19,19 @@ Scene1::Scene1(SDL_Window* sdlWindow_){
 
 Scene1::~Scene1(){
 	IMG_Quit();
+}
+
+void Scene1::flappyInit(const float constant = DEFAULT_DRAG_FORCE_CONSTANT) {
+	flappyBird = new Entity();
+	flappyBird->pos = Vec3(2.0f, 5.0f, 0.0f);
+	flappyBird->SetImage("textures/flappyBird.png", renderer);
+
+	// Set Flappy initial state
+	flappyBird->mass = 2.0f;
+	flappyBird->constant = constant;
+	flappyBird->angleDeg = M_PI / 180 * 27;
+	flappyBird->vel = Vec3(30.0f * cos(flappyBird->angleDeg), 30.0f * sin(flappyBird->angleDeg), 0.0f);
+	flappyBird->ApplyForce(Vec3(-30.0f, flappyBird->gravity * flappyBird->mass, 0.0f));
 }
 
 bool Scene1::OnCreate() {
@@ -39,16 +54,11 @@ bool Scene1::OnCreate() {
 	
 	// Create the objects that will be rednered on the screen
 	cliff = new Entity();
-	cliff->pos = Vec3(0.0f, 4.0f, 0.0f);
+	cliff->pos = Vec3(2.0f, 4.8f, 0.0f);
 	cliff->SetImage("textures/cliff.png", renderer);
 
-	flappyBird = new Entity();
-	flappyBird->pos = Vec3(0.0f, 4.2f, 0.0f);
-	flappyBird->SetImage("textures/flappyBird.png", renderer);
-
-	// Apply gravity on bird
-	flappyBird->ApplyForce(Vec3(0,flappyBird->gravity,0));
-
+	flappyInit();
+	
 	return true;
 }
 
@@ -70,12 +80,15 @@ void Scene1::HandleEvents(const SDL_Event& event)
 	switch (event.type) {
 	case SDL_KEYDOWN:
 		// Change angle of the ball
-		if (event.key.keysym.scancode == SDL_SCANCODE_O) {
-			// flappyBird->Update(0.01f);
+		if (event.key.keysym.scancode == SDL_SCANCODE_A) {
+			constantScale *= 0.5f;
 		}
-		if (event.key.keysym.scancode == SDL_SCANCODE_P) {
-			
+		if (event.key.keysym.scancode == SDL_SCANCODE_D) {
+			constantScale *= 2.0f;
 		}
+
+		cout << "Drag force constant: " << constantScale * DEFAULT_DRAG_FORCE_CONSTANT << endl;
+		flappyInit(constantScale * DEFAULT_DRAG_FORCE_CONSTANT);
 		break;
 
 	default:
