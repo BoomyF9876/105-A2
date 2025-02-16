@@ -91,7 +91,7 @@ void Scene1::HandleEvents(const SDL_Event& event)
 			constantScale *= 0.5f;
 		}
 		if (event.key.keysym.scancode == SDL_SCANCODE_E) {
-			constantScale += 2.0f;
+			constantScale *= 2.0f;
 		}
 		if (event.key.keysym.scancode == SDL_SCANCODE_R) {
 			constantScale *= -1.0f;
