@@ -32,9 +32,20 @@ void Scene1::flappyInit(const float constant = DEFAULT_DRAG_FORCE_CONSTANT) {
 	flappyBird->mass = 2.0f;
 	flappyBird->constant = constant;
 	flappyBird->angleDeg = M_PI / 180 * 27;
+	flappyBird->r = 0.75f;
 	flappyBird->vel = Vec3(30.0f * cos(flappyBird->angleDeg), 30.0f * sin(flappyBird->angleDeg), 0.0f);
 	flappyBird->initialForce = Vec3(-30.0f, flappyBird->gravity * flappyBird->mass, 0.0f);
 	flappyBird->ApplyForce(flappyBird->initialForce);
+}
+
+void Scene1::defineBoundaries(Entity *entity) {
+	if (entity->pos.x > xAxis - entity->r * 2.0f || entity->pos.x < 0) {
+		entity->vel.x *= -1;
+	}
+	if (entity->pos.y > yAxis || entity->pos.y < entity->r * 2.0f) {
+		entity->vel.y *= -1;
+	}
+
 }
 
 bool Scene1::OnCreate() {
@@ -112,6 +123,8 @@ void Scene1::HandleEvents(const SDL_Event& event)
 void Scene1::Update(const float deltaTime) {
 	/// Physics goes here
 	flappyBird->Update(deltaTime);
+
+	defineBoundaries(flappyBird);
 }
 
 void Scene1::Render() const {
