@@ -1,8 +1,4 @@
-﻿  Entity.cpp
-C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Entity.cpp(45,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Entity.cpp(44,21): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  GameManager.cpp
-  Scene1.cpp
+﻿  Scene1.cpp
   This is wrong: Vec4 cross(const Vec4& a, const Vec4& b)
   This questionable: Vec4 inverse(const Vec4& v)
 C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(34,36): warning C4305: '=': truncation from 'double' to 'float'
@@ -10,5 +6,4 @@ C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(138,36): warni
 C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(139,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(146,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\boomy\Desktop\humber\game-105\SDL\SDL_Project\Scene1.cpp(147,41): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
   SDL_Project.vcxproj -> C:\Users\boomy\Desktop\humber\game-105\SDL\Debug\SDL_Project.exe

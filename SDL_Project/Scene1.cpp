@@ -39,10 +39,10 @@ void Scene1::flappyInit(const float constant = DEFAULT_DRAG_FORCE_CONSTANT) {
 }
 
 void Scene1::defineBoundaries(Entity *entity) {
-	if (entity->pos.x > xAxis - entity->r * 2.0f || entity->pos.x < 0) {
+	if (entity->pos.x > xAxis - entity->r || entity->pos.x < entity->r) {
 		entity->vel.x *= -1;
 	}
-	if (entity->pos.y > yAxis || entity->pos.y < entity->r * 2.0f) {
+	if (entity->pos.y > yAxis - entity->r || entity->pos.y < entity->r) {
 		entity->vel.y *= -1;
 	}
 
@@ -145,6 +145,10 @@ void Scene1::Render() const {
 	square.y = static_cast<int>(screenCoords.y);
 	square.w = flappyBird->GetSurface()->w * flappyBirdScale; // we will scale the bird 
 	square.h = flappyBird->GetSurface()->h * flappyBirdScale;
+
+	square.x -= square.w / 2;
+	square.y -= square.h / 2;
+
 	SDL_RenderCopyEx(renderer, flappyBird->GetTexture(), nullptr, &square, flappyBird->angleDeg, nullptr, SDL_FLIP_NONE);
 
 	// Update the screen
