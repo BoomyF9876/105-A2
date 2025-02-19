@@ -22,6 +22,8 @@ Scene1::~Scene1(){
 }
 
 void Scene1::flappyInit(const float constant = DEFAULT_DRAG_FORCE_CONSTANT) {
+	delete flappyBird;
+
 	flappyBird = new Entity();
 	flappyBird->pos = Vec3(2.0f, 5.0f, 0.0f);
 	flappyBird->SetImage("textures/flappyBird.png", renderer);
