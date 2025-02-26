@@ -15,9 +15,11 @@ private:
 	SDL_Renderer* renderer;
 
 	Entity* cliff;
+	Entity* ball;
 	Entity* flappyBird;
 
 	float cliffScale = 0.6f; // a scale to make the texture smaller or larger
+	float ballScale = 0.8f;
 	float flappyBirdScale = 1.0f; // a scale to make the texture smaller or larger
 	float constantScale = 1.0f;
 
@@ -26,6 +28,7 @@ public:
 	~Scene1();
 	void flappyInit(const float constant);
 	void defineBoundaries(Entity *entity);
+	void checkCollision(Entity* entity, Entity* obstacle);
 	bool OnCreate() override;
 	void OnDestroy() override;
 	void HandleEvents(const SDL_Event& event) override;

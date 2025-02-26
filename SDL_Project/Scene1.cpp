@@ -48,6 +48,18 @@ void Scene1::defineBoundaries(Entity *entity) {
 
 }
 
+void Scene1::checkCollision(Entity *entity, Entity *obstable) {
+	Vec3 vecDistance = entity->pos - obstable->pos;
+	float distance = sqrt(pow(vecDistance.x, 2) + pow(vecDistance.y, 2) + pow(vecDistance.z, 2));
+	
+	if (distance > entity->r + obstable->r) return;
+	
+	Vec3 normalized = VMath::normalize(entity->pos - obstable->pos);
+	Vec3 P = VMath::dot(-entity->vel, normalized) * normalized;
+	
+	entity->vel += 2 * P;
+}
+
 bool Scene1::OnCreate() {
 	// Create a project matrix that moves positions from physics/world space 
 	// to screen/pixel space
@@ -71,6 +83,10 @@ bool Scene1::OnCreate() {
 	cliff->pos = Vec3(2.0f, 4.8f, 0.0f);
 	cliff->SetImage("textures/cliff.png", renderer);
 
+	ball = new Entity();
+	ball->pos = Vec3(15.0f, 8.0f, 0.0f);
+	ball->SetImage("textures/ball.png", renderer);
+
 	flappyInit();
 	
 	return true;
@@ -84,9 +100,8 @@ void Scene1::OnDestroy() {
 	}
 
 	delete cliff;
+	delete ball;
 	delete flappyBird;
-	cliff = nullptr;
-	flappyBird = nullptr;
 }
 
 void Scene1::HandleEvents(const SDL_Event& event)
@@ -125,6 +140,8 @@ void Scene1::Update(const float deltaTime) {
 	flappyBird->Update(deltaTime);
 
 	defineBoundaries(flappyBird);
+
+	checkCollision(flappyBird, ball);
 }
 
 void Scene1::Render() const {
@@ -139,6 +156,16 @@ void Scene1::Render() const {
 	square.h = cliff->GetSurface()->h * cliffScale;
 	SDL_RenderCopyEx(renderer, cliff->GetTexture(), nullptr, &square, cliff->angleDeg, nullptr, SDL_FLIP_NONE);
 
+	screenCoords = projectionMatrix * ball->pos;
+	square.x = static_cast<int>(screenCoords.x);
+	square.y = static_cast<int>(screenCoords.y);
+	square.w = ball->GetSurface()->w * ballScale;
+	square.h = ball->GetSurface()->h * ballScale;
+
+	square.x -= square.w / 2;
+	square.y -= square.h / 2;
+	SDL_RenderCopyEx(renderer, ball->GetTexture(), nullptr, &square, ball->angleDeg, nullptr, SDL_FLIP_NONE);
+
 	// Display the flappy bird object on the screen
 	screenCoords = projectionMatrix * flappyBird->pos;
 	square.x = static_cast<int>(screenCoords.x);
@@ -148,7 +175,6 @@ void Scene1::Render() const {
 
 	square.x -= square.w / 2;
 	square.y -= square.h / 2;
-
 	SDL_RenderCopyEx(renderer, flappyBird->GetTexture(), nullptr, &square, flappyBird->angleDeg, nullptr, SDL_FLIP_NONE);
 
 	// Update the screen
