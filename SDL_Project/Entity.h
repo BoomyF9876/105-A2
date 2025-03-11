@@ -5,8 +5,6 @@
 #include <SDL.h>
 using namespace MATH;
 
-const float DEFAULT_DRAG_FORCE_CONSTANT = 0.2f;
-
 class Entity {
 private:
 	// Keep these private as we should only build them in the setImage method
@@ -14,17 +12,10 @@ private:
 	SDL_Texture* texture = nullptr; // Used to render the image
 
 public:
-	float angleDeg;
 	Vec3 pos;
 	Vec3 vel;
 	Vec3 acc;
-	Vec3 initialForce;
 	float mass;
-	// Let's pretend all entitys are circles
-	float r;
-	float constant;
-	const float gravity = -9.8f;
-	
 
 	Entity();
 	~Entity();
@@ -33,7 +24,6 @@ public:
 	// Just like assignment 1!
 	void ApplyForce(Vec3 force);
 	void Update(float deltaTime);
-
 
 	// Need getters for private member variables
 	SDL_Surface* GetSurface() const { return surface; }
