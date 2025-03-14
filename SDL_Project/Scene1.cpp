@@ -21,45 +21,6 @@ Scene1::~Scene1(){
 	IMG_Quit();
 }
 
-void Scene1::flappyInit(const float constant = DEFAULT_DRAG_FORCE_CONSTANT) {
-	delete flappyBird;
-
-	flappyBird = new Entity();
-	flappyBird->pos = Vec3(2.0f, 5.0f, 0.0f);
-	flappyBird->SetImage("textures/flappyBird.png", renderer);
-
-	// Set Flappy initial state
-	flappyBird->mass = 2.0f;
-	flappyBird->constant = constant;
-	flappyBird->angleDeg = M_PI / 180 * 27;
-	flappyBird->r = 0.75f;
-	flappyBird->vel = Vec3(30.0f * cos(flappyBird->angleDeg), 30.0f * sin(flappyBird->angleDeg), 0.0f);
-	flappyBird->initialForce = Vec3(-30.0f, flappyBird->gravity * flappyBird->mass, 0.0f);
-	flappyBird->ApplyForce(flappyBird->initialForce);
-}
-
-void Scene1::defineBoundaries(Entity *entity) {
-	if (entity->pos.x > xAxis - entity->r || entity->pos.x < entity->r) {
-		entity->vel.x *= -1;
-	}
-	if (entity->pos.y > yAxis - entity->r || entity->pos.y < entity->r) {
-		entity->vel.y *= -1;
-	}
-
-}
-
-void Scene1::checkCollision(Entity *entity, Entity *obstable) {
-	Vec3 vecDistance = entity->pos - obstable->pos;
-	float distance = sqrt(pow(vecDistance.x, 2) + pow(vecDistance.y, 2) + pow(vecDistance.z, 2));
-	
-	if (distance > entity->r + obstable->r) return;
-	
-	Vec3 normalized = VMath::normalize(entity->pos - obstable->pos);
-	Vec3 P = VMath::dot(-entity->vel, normalized) * normalized;
-	
-	entity->vel += 2 * P;
-}
-
 bool Scene1::OnCreate() {
 	// Create a project matrix that moves positions from physics/world space 
 	// to screen/pixel space
@@ -83,11 +44,17 @@ bool Scene1::OnCreate() {
 	cliff->pos = Vec3(2.0f, 4.8f, 0.0f);
 	cliff->SetImage("textures/cliff.png", renderer);
 
-	ball = new Entity();
-	ball->pos = Vec3(15.0f, 8.0f, 0.0f);
-	ball->SetImage("textures/ball.png", renderer);
+	flappyBird = new Entity();
+	flappyBird->pos = Vec3(2.0f, 5.0f, 0.0f);
+	flappyBird->SetImage("textures/flappyBird.png", renderer);
 
-	flappyInit();
+	// Set Flappy initial state
+	flappyBird->mass = 2.0f;
+	flappyBird->constant = DEFAULT_DRAG_FORCE_CONSTANT;
+	flappyBird->angleDeg = M_PI / 180 * 27;
+	flappyBird->vel = Vec3(30.0f * cos(flappyBird->angleDeg), 30.0f * sin(flappyBird->angleDeg), 0.0f);
+	flappyBird->initialForce = Vec3(-30.0f, flappyBird->gravity * flappyBird->mass, 0.0f);
+	flappyBird->ApplyForce(flappyBird->initialForce);
 	
 	return true;
 }
@@ -106,32 +73,7 @@ void Scene1::OnDestroy() {
 
 void Scene1::HandleEvents(const SDL_Event& event)
 {
-	switch (event.type) {
-	case SDL_KEYDOWN:
-		// Change angle of the ball
-		if (event.key.keysym.scancode == SDL_SCANCODE_A) {
-			constantScale -= 0.05f;
-		}
-		if (event.key.keysym.scancode == SDL_SCANCODE_D) {
-			constantScale += 0.05f;
-		}
-		if (event.key.keysym.scancode == SDL_SCANCODE_Q) {
-			constantScale *= 0.5f;
-		}
-		if (event.key.keysym.scancode == SDL_SCANCODE_E) {
-			constantScale *= 2.0f;
-		}
-		if (event.key.keysym.scancode == SDL_SCANCODE_R) {
-			constantScale *= -1.0f;
-		}
-
-		cout << "Drag force constant: " << constantScale * DEFAULT_DRAG_FORCE_CONSTANT << endl;
-		flappyInit(constantScale * DEFAULT_DRAG_FORCE_CONSTANT);
-		break;
-
-	default:
-		break;
-	}
+	return;
 }
 
 

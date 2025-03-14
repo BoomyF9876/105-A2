@@ -26,9 +26,6 @@ private:
 public:
 	Scene1(SDL_Window* sdlWindow);
 	~Scene1();
-	void flappyInit(const float constant);
-	void defineBoundaries(Entity *entity);
-	void checkCollision(Entity* entity, Entity* obstacle);
 	bool OnCreate() override;
 	void OnDestroy() override;
 	void HandleEvents(const SDL_Event& event) override;
