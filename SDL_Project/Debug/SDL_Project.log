@@ -1,10 +1,12 @@
-﻿  Scene2.cpp
+﻿  GameManager.cpp
+  Scene2.cpp
   This is wrong: Vec4 cross(const Vec4& a, const Vec4& b)
   This questionable: Vec4 inverse(const Vec4& v)
-C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(115,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(116,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(125,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(126,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(136,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(137,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(123,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(124,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(133,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(134,36): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(144,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\boomy\Desktop\humber\game-105\Assignment3\SDL_Project\Scene2.cpp(145,37): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
   SDL_Project.vcxproj -> C:\Users\boomy\Desktop\humber\game-105\Assignment3\Debug\SDL_Project.exe

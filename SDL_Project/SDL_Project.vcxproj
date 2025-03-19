@@ -146,8 +146,6 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Scene0.cpp" />
-    <ClCompile Include="Scene1.cpp" />
     <ClCompile Include="Scene2.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -156,8 +154,6 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Scene.h" />
-    <ClInclude Include="Scene0.h" />
-    <ClInclude Include="Scene1.h" />
     <ClInclude Include="Scene2.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Window.h" />

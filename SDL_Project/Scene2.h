@@ -26,6 +26,7 @@ public:
 	~Scene2();
 	bool OnCreate() override;
 	void OnDestroy() override;
+	void initPlanet(Vec3 initVel);
 	void HandleEvents(const SDL_Event& event) override;
 	void Update(const float time) override;
 	void Render() const override;

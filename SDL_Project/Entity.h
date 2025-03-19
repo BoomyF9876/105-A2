@@ -15,7 +15,9 @@ public:
 	Vec3 pos;
 	Vec3 vel;
 	Vec3 acc;
+	Vec3 initVel;
 	float mass;
+	float angleDeg;
 
 	Entity();
 	~Entity();
@@ -23,7 +25,7 @@ public:
 
 	// Just like assignment 1!
 	void ApplyForce(Vec3 force);
-	void Update(float deltaTime);
+	void Update(float deltaTime, Entity* entity1, Entity* entity2);
 
 	// Need getters for private member variables
 	SDL_Surface* GetSurface() const { return surface; }

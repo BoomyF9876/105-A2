@@ -5,8 +5,10 @@ Entity::Entity(): // this is an initializer list
 	surface(nullptr), 
 	texture(nullptr),
 	mass(1.0f),
-	vel(Vec3(0.0f,0.0f,0.0f)),
-	acc(Vec3(0.0f,0.0f,0.0f))
+	initVel(Vec3(0.0f,0.0f,0.0f)),
+	vel(initVel),
+	acc(Vec3(0.0f,0.0f,0.0f)),
+	angleDeg(0.0f)
 {
 }
 
@@ -17,6 +19,22 @@ Entity::~Entity() {
 	texture = nullptr;
 }
 
+Vec3 applyNewtonsLaw(Entity* entity1, Entity* entity2) {
+	Vec3 radius = entity2->pos - entity1->pos;
+	float radiusSquare = pow(radius.x,2) + pow(radius.y,2);
+	float forceAbs = entity1->mass * entity2->mass / radiusSquare;
+
+	Vec3 normalized = radius / sqrt(radiusSquare);
+
+	return normalized * forceAbs;
+}
+
+Vec3 calculateGravityForce(Entity* planet, Entity* star1, Entity* star2) {
+	Vec3 force1 = applyNewtonsLaw(planet, star1);
+	Vec3 force2 = applyNewtonsLaw(planet, star2);
+
+	return force1 + force2;
+}
 
 void Entity::SetImage(const char* filename, SDL_Renderer* renderer) {
 	surface = IMG_Load(filename);
@@ -29,10 +47,10 @@ void Entity::SetImage(const char* filename, SDL_Renderer* renderer) {
 void Entity::ApplyForce(Vec3 force)
 {
 	// Apply other forces
-    acc += Vec3(force.x / mass, force.y / mass, force.z / mass);
+    acc = Vec3(force.x / mass, force.y / mass, force.z / mass);
 }
 
-void Entity::Update(float deltaTime)
+void Entity::Update(float deltaTime, Entity* star1, Entity* star2)
 {
 	pos += Vec3(
 		vel.x * deltaTime + 0.5f * pow(deltaTime, 2) * acc.x,
@@ -41,5 +59,6 @@ void Entity::Update(float deltaTime)
 	);
     vel += acc * deltaTime;
 
-	ApplyForce();
+	Vec3 force = calculateGravityForce(this, star1, star2);
+	ApplyForce(force);
 }

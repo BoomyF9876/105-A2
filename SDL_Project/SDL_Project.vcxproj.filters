@@ -24,16 +24,10 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scene0.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Window.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Scene2.cpp">
@@ -50,16 +44,10 @@
     <ClInclude Include="Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scene0.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Window.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scene2.h">

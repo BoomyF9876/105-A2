@@ -13,13 +13,19 @@ Scene2::Scene2(SDL_Window* sdlWindow_){
 	planet = nullptr;
 	star1 = nullptr;
 	star2 = nullptr;
-	xAxis = 20.0f;
-	yAxis = 35.0f;
+	xAxis = 25.0f;
+	yAxis = 40.0f;
 	IMG_Init(IMG_INIT_PNG);
 }
 
 Scene2::~Scene2(){
 	IMG_Quit();
+}
+
+void Scene2::initPlanet(Vec3 initVel) {
+	planet->acc = Vec3(0.0f, 0.0f, 0.0f);
+	planet->pos = Vec3(10.0f, 20.0f, 0.0f);
+	planet->vel = initVel;
 }
 
 bool Scene2::OnCreate() {
@@ -42,8 +48,8 @@ bool Scene2::OnCreate() {
 	
 	// Create the objects that will be rednered on the screen
 	planet = new Entity();
-	planet->pos = Vec3(10.0f, 20.0f, 0.0f);
 	planet->SetImage("textures/planet.png", renderer);
+	initPlanet(planet->initVel);
 
     star1 = new Entity();
 	star1->pos = Vec3(5.0f, 10.0f, 0.0f);
@@ -72,27 +78,27 @@ void Scene2::OnDestroy() {
 
 void Scene2::HandleEvents(const SDL_Event& event)
 {
+	Vec3 vel = planet->initVel;
 	switch (event.type) {
 	case SDL_KEYDOWN:
 		// Change angle of the ball
-		// if (event.key.keysym.scancode == SDL_SCANCODE_A) {
-		// 	constantScale -= 0.05f;
-		// }
-		// if (event.key.keysym.scancode == SDL_SCANCODE_D) {
-		// 	constantScale += 0.05f;
-		// }
-		// if (event.key.keysym.scancode == SDL_SCANCODE_Q) {
-		// 	constantScale *= 0.5f;
-		// }
-		// if (event.key.keysym.scancode == SDL_SCANCODE_E) {
-		// 	constantScale *= 2.0f;
-		// }
-		// if (event.key.keysym.scancode == SDL_SCANCODE_R) {
-		// 	constantScale *= -1.0f;
-		// }
+		if (event.key.keysym.scancode == SDL_SCANCODE_A) {
+			vel.x -= 0.2f;
+		}
+		if (event.key.keysym.scancode == SDL_SCANCODE_D) {
+			vel.x += 0.2f;
+		}
+		if (event.key.keysym.scancode == SDL_SCANCODE_W) {
+			vel.y += 0.2f;
+		}
+		if (event.key.keysym.scancode == SDL_SCANCODE_S) {
+			vel.y -= 0.2f;
+		}
 
-		// cout << "Drag force constant: " << constantScale * DEFAULT_DRAG_FORCE_CONSTANT << endl;
-		// flappyInit(constantScale * DEFAULT_DRAG_FORCE_CONSTANT);
+		cout << "Initial Velocity: ";
+		vel.print();
+		planet->initVel = vel;
+		initPlanet(vel);
 		break;
 
 	default:
@@ -103,7 +109,7 @@ void Scene2::HandleEvents(const SDL_Event& event)
 
 void Scene2::Update(const float deltaTime) {
 	/// Physics goes here
-	// flappyBird->Update(deltaTime);
+	planet->Update(deltaTime, star1, star2);
 }
 
 void Scene2::Render() const {
